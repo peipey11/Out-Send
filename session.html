@@ -7,14 +7,12 @@
     <style>
       body {
         font-family: system-ui, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #f4f6fa;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
         min-height: 100vh;
+        margin: 0;
+        background: #f4f6fa;
       }
       .card {
         background: white;
@@ -29,88 +27,28 @@
         color: #3b82f6;
         margin-bottom: 10px;
       }
-      input {
-        width: 100%;
-        padding: 14px;
+      p {
         font-size: 16px;
-        border-radius: 10px;
-        border: 1px solid #ccc;
-        margin-bottom: 20px;
-      }
-      button {
-        width: 100%;
-        padding: 14px;
-        font-size: 16px;
-        border: none;
-        border-radius: 10px;
-        background: #3b82f6;
-        color: white;
-        cursor: pointer;
-      }
-      button:hover {
-        background: #2563eb;
-      }
-      .message {
-        margin-top: 14px;
-        font-size: 14px;
-        color: #dc3c50;
       }
     </style>
   </head>
   <body>
     <div class="card">
-      <h1>Enter Session Code</h1>
-      <input
-        type="text"
-        id="session-code"
-        maxlength="4"
-        placeholder="XXXX"
-        autofocus
-      />
-      <button id="lookup-btn">Go</button>
-      <div class="message" id="msg"></div>
+      <h1>Redirecting...</h1>
+      <p>
+        If not redirected automatically, <a id="link" href="#">click here</a>.
+      </p>
     </div>
 
     <script>
-      const lookupBtn = document.getElementById("lookup-btn");
-      const sessionInput = document.getElementById("session-code");
-      const msg = document.getElementById("msg");
+      // Replace this with your Flask backend session enter page
+      const backendSessionUrl = "https://outsend.onrender.com/session/enter";
 
-      lookupBtn.addEventListener("click", () => {
-        const code = sessionInput.value.trim().toUpperCase();
-        if (!code) {
-          msg.textContent = "Enter session code";
-          return;
-        }
-        msg.textContent = "";
+      // Redirect immediately
+      window.location.href = backendSessionUrl;
 
-        // ✅ Call Vercel serverless API that proxies to Render backend
-        fetch("/api/lookup", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ code }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.redirect_url) {
-              // Redirect to Flask session page
-              window.location.href = data.redirect_url;
-            } else if (data.error) {
-              msg.textContent = data.error;
-            } else {
-              msg.textContent = "Unknown error";
-            }
-          })
-          .catch((err) => {
-            console.error(err);
-            msg.textContent = "Server unreachable";
-          });
-      });
-
-      // Enter key submits
-      sessionInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") lookupBtn.click();
-      });
+      // Fallback link
+      document.getElementById("link").href = backendSessionUrl;
     </script>
   </body>
 </html>
