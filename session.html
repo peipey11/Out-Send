@@ -83,7 +83,9 @@
           return;
         }
         msg.textContent = "";
-        fetch("https://your-backend.com/session/lookup", {
+
+        // ✅ Call Vercel serverless function
+        fetch("/api/lookup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ code }),
