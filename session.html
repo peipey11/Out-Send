@@ -84,7 +84,7 @@
         }
         msg.textContent = "";
 
-        // ✅ Call Vercel serverless function
+        // ✅ Call Vercel serverless API that proxies to Render backend
         fetch("/api/lookup", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -93,6 +93,7 @@
           .then((res) => res.json())
           .then((data) => {
             if (data.redirect_url) {
+              // Redirect to Flask session page
               window.location.href = data.redirect_url;
             } else if (data.error) {
               msg.textContent = data.error;
