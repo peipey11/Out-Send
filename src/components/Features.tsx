@@ -16,7 +16,7 @@ const features = [
     icon: Clock,
     title: "Temporary Sessions",
     description:
-      "Session codes expires after 15 minutes and your files get automatically deleted.",
+      "Session code expires after 15 minutes and your files get automatically deleted.",
   },
   {
     icon: Globe,
