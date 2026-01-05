@@ -1,8 +1,11 @@
-import { FileText, Menu, X } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import { useState } from "react";
+import { useTheme } from "@/hooks/use-theme";
+import outsendLogo from "@/assets/outsend-logo.ico";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
@@ -10,8 +13,8 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center">
-              <FileText className="w-5 h-5 text-primary-foreground" />
+            <div className="w-9 h-9 rounded-xl bg-primary dark:bg-background flex items-center justify-center overflow-hidden">
+              <img src={outsendLogo} alt="OutSend Logo" className="w-6 h-6 object-contain" />
             </div>
             <span className="text-xl font-bold text-foreground">OutSend</span>
           </div>
@@ -40,6 +43,18 @@ const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
+            {/* Dark Mode Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-secondary text-foreground hover:bg-accent transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
+            </button>
             <a
               href="https://outsend.onrender.com/session/enter"
               className="btn-secondary text-sm py-2 px-4"
@@ -52,16 +67,30 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-muted-foreground hover:text-foreground"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            {/* Dark Mode Toggle (Mobile) */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-secondary text-foreground hover:bg-accent transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
+            </button>
+            <button
+              className="p-2 text-muted-foreground hover:text-foreground"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -87,14 +116,14 @@ const Header = () => {
                 Download
               </a>
               <div className="flex flex-col gap-2 pt-4">
+                <a href="#download" className="btn-primary text-center">
+                  Get App
+                </a>
                 <a
                   href="https://outsend.onrender.com/session/enter"
                   className="btn-secondary text-center"
                 >
                   Session
-                </a>
-                <a href="#download" className="btn-primary text-center">
-                  Get App
                 </a>
               </div>
             </nav>

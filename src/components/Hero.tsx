@@ -22,14 +22,20 @@ const Hero = () => {
             – just download and print!
           </p>
 
-          {/* CTA Button */}
-          <div className="animate-fade-up-delay-3">
+          {/* CTA Buttons */}
+          <div className="animate-fade-up-delay-3 flex flex-col items-center gap-4">
             <a
               href="#download"
               className="btn-primary inline-flex items-center gap-2 text-lg px-8 py-4"
             >
               Download App
               <ArrowRight className="w-5 h-5" />
+            </a>
+            <a
+              href="https://outsend.onrender.com/session/enter"
+              className="btn-secondary inline-flex sm:hidden items-center gap-2 text-lg px-8 py-4"
+            >
+              Enter Session
             </a>
           </div>
         </div>

@@ -20,7 +20,7 @@ const DownloadSection = () => {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
                 <a
-                  href="https://github.com/peipey11/OutSend/releases/download/alpha/OutSend.exe"
+                  href="/download"
                   className="btn-primary flex items-center gap-3 text-lg px-8 py-4 w-full sm:w-auto justify-center"
                 >
                   <Monitor className="w-5 h-5" />

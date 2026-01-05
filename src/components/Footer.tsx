@@ -1,4 +1,5 @@
-import { FileText, Github } from "lucide-react";
+import { Github } from "lucide-react";
+import outsendLogo from "@/assets/outsend-logo.ico";
 
 const Footer = () => {
   return (
@@ -8,8 +9,8 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center">
-                <FileText className="w-5 h-5 text-primary-foreground" />
+              <div className="w-9 h-9 rounded-xl bg-primary dark:bg-background flex items-center justify-center overflow-hidden">
+                <img src={outsendLogo} alt="OutSend Logo" className="w-6 h-6 object-contain" />
               </div>
               <span className="text-xl font-bold text-foreground">OutSend</span>
             </div>
